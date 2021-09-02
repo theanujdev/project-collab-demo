@@ -30,9 +30,9 @@ const CardModal = ({ show, handleHide }) => {
     }
   }, [show, metaUpdate]);
 
-  // const sortDate = ()=>{
-
-  // }
+  const sortDate = (arr) => {
+    return arr.sort((a, b) => new Date(a.date) - new Date(b.date));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -88,13 +88,13 @@ const CardModal = ({ show, handleHide }) => {
           // update in the new category
           switch (refCategory.current.value) {
             case "ToDo":
-              setToDo(updatedArr);
+              setToDo(sortDate(updatedArr));
               break;
             case "Doing":
-              setDoing(updatedArr);
+              setDoing(sortDate(updatedArr));
               break;
             case "Done":
-              setDone(updatedArr);
+              setDone(sortDate(updatedArr));
               break;
             default:
               break;
