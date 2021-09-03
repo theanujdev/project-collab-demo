@@ -1,4 +1,4 @@
-# Code Playground (Frontend)
+# Project Collab App
 
 ## Overview
 
@@ -43,6 +43,14 @@ yarn install
 ```bash
 yarn start
 ```
+
+## Screenshots
+
+![App Home](https://raw.githubusercontent.com/ProdexOne/project-collab-demo/master/img/home.png)
+
+![Create card](https://raw.githubusercontent.com/ProdexOne/project-collab-demo/master/img/create_card.png)
+
+![Edit card](https://raw.githubusercontent.com/ProdexOne/project-collab-demo/master/img/update_card.png)
 
 ## Feedback
 
