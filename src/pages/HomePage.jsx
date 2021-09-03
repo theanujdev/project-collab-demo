@@ -4,22 +4,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardModal from "../components/CardModal";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../contexts/DataContext";
 
 const HomePage = () => {
-  const { showCardModal, setShowCardModal } = useContext(AppContext);
-
-  function renderModal() {
-    return (
-      <CardModal
-        show={showCardModal}
-        handleHide={() => {
-          setShowCardModal(false);
-        }}
-      />
-    );
-  }
+  const { setShowCardModal } = useContext(AppContext);
 
   return (
     <>
@@ -37,7 +26,7 @@ const HomePage = () => {
           </Col>
         </Row>
       </Container>
-      {renderModal()}
+      <CardModal />
     </>
   );
 };

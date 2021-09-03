@@ -7,8 +7,16 @@ import { useContext } from "react";
 import { AppContext } from "../contexts/DataContext";
 import { useRef } from "react";
 
-const CardModal = ({ show, handleHide }) => {
-  const { setToDo, setDoing, setDone, metaUpdate } = useContext(AppContext);
+const CardModal = () => {
+  const {
+    metaUpdate,
+    showCardModal,
+    setToDo,
+    setDoing,
+    setDone,
+    setShowCardModal,
+  } = useContext(AppContext);
+
   const data = useContext(AppContext);
   const [validated, setValidated] = useState({ title: true, desc: true });
   const [title, setTitle] = useState("");
@@ -16,6 +24,7 @@ const CardModal = ({ show, handleHide }) => {
   const refCategory = useRef();
 
   useEffect(() => {
+    setValidated({ title: true, desc: true });
     if (metaUpdate) {
       for (const obj of data[metaUpdate.category]) {
         if (obj.date.toString() === metaUpdate.date) {
@@ -28,7 +37,7 @@ const CardModal = ({ show, handleHide }) => {
       setTitle("");
       setDesc("");
     }
-  }, [show, metaUpdate]);
+  }, [showCardModal, metaUpdate, data]);
 
   const sortDate = (arr) => {
     return arr.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -101,7 +110,7 @@ const CardModal = ({ show, handleHide }) => {
           }
         }
       }
-      handleHide();
+      setShowCardModal(false);
       return;
     }
 
@@ -141,15 +150,15 @@ const CardModal = ({ show, handleHide }) => {
         break;
     }
 
-    handleHide();
+    setShowCardModal(false);
   };
 
   return (
     <>
       <Modal
-        show={show}
+        show={showCardModal}
         fullscreen="sm-down"
-        onHide={handleHide}
+        onHide={() => setShowCardModal(false)}
         backdrop="static"
         keyboard={false}
       >
