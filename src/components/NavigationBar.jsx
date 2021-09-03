@@ -43,8 +43,12 @@ const NavigationBar = ({ setShowCardModal }) => {
               </Modal.Header>
               <Modal.Body>
                 <p>
-                  This project is a demo of project collab/management like
-                  services like Jira, Trello, etc.
+                  This project is a simple clone of project collab/management
+                  services like Jira, Trello, etc. Users can create ToDo, Doing,
+                  Done tasks and update them as well. It uses HTML5 drag & drop
+                  APIs to drag cards to different categories. Cards are sorted
+                  according to their modified time. State of the data is
+                  preserved so you don't lose anything.
                 </p>
                 ~ Made by Anuj Sharma
               </Modal.Body>

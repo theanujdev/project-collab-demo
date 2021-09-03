@@ -6,6 +6,7 @@ import { AppContext } from "../contexts/DataContext";
 const Cards = ({ title, desc, category, date }) => {
   const { setMetaUpdate, setShowCardModal } = useContext(AppContext);
   const handleCardClick = (e) => {
+    // meta data for updating the card
     setMetaUpdate({
       date: e.currentTarget.dataset.date,
       category: e.currentTarget.dataset.category,

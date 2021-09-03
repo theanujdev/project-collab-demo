@@ -25,6 +25,7 @@ const CardModal = () => {
 
   useEffect(() => {
     setValidated({ title: true, desc: true });
+    // pre-fill data
     if (metaUpdate) {
       for (const obj of data[metaUpdate.category]) {
         if (obj.date.toString() === metaUpdate.date) {
@@ -39,24 +40,45 @@ const CardModal = () => {
     }
   }, [showCardModal, metaUpdate, data]);
 
+  const handleDelete = () => {
+    switch (metaUpdate.category) {
+      case "ToDo":
+        setToDo((prev) => prev.filter((item) => item.date !== metaUpdate.date));
+        break;
+      case "Doing":
+        setDoing((prev) =>
+          prev.filter((item) => item.date !== metaUpdate.date)
+        );
+        break;
+      case "Done":
+        setDone((prev) => prev.filter((item) => item.date !== metaUpdate.date));
+        break;
+      default:
+        break;
+    }
+    setShowCardModal(false);
+  };
+
   const sortDate = (arr) => {
     return arr.sort((a, b) => new Date(a.date) - new Date(b.date));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!/^[a-zA-Z]+$/.test(title)) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // validate the data
+    if (!/^[a-zA-Z][a-zA-Z ]*$/.test(title)) {
       setValidated({ ...validated, title: false });
       return;
     }
-    setValidated({ ...validated, title: true });
 
     if (desc.length < 25) {
-      setValidated({ ...validated, desc: false });
+      setValidated({ title: true, desc: false });
       return;
     }
-    setValidated({ ...validated, desc: true });
+    setValidated({ title: true, desc: true });
 
+    // updating the card
     if (metaUpdate) {
       for (const i in data[metaUpdate.category]) {
         if (data[metaUpdate.category][i].date === metaUpdate.date) {
@@ -64,7 +86,7 @@ const CardModal = () => {
           let newData = {
             title,
             desc,
-            date: new Date().toString(),
+            date: new Date().toLocaleString(),
             category: refCategory.current.value,
           };
 
@@ -114,36 +136,22 @@ const CardModal = () => {
       return;
     }
 
+    // creating new card
+    let newCard = {
+      title,
+      desc,
+      date: new Date().toLocaleString(),
+      category: refCategory.current.value,
+    };
     switch (refCategory.current.value) {
       case "ToDo":
-        setToDo((prev) =>
-          [...prev].concat({
-            title,
-            desc,
-            date: new Date().toString(),
-            category: "ToDo",
-          })
-        );
+        setToDo((prev) => [...prev].concat(newCard));
         break;
       case "Doing":
-        setDoing((prev) =>
-          [...prev].concat({
-            title,
-            desc,
-            date: new Date().toString(),
-            category: "Doing",
-          })
-        );
+        setDoing((prev) => [...prev].concat(newCard));
         break;
       case "Done":
-        setDone((prev) =>
-          [...prev].concat({
-            title,
-            desc,
-            date: new Date().toString(),
-            category: "Done",
-          })
-        );
+        setDone((prev) => [...prev].concat(newCard));
         break;
 
       default:
@@ -218,6 +226,11 @@ const CardModal = () => {
             </FloatingLabel>
             <Modal.Footer>
               <Button type="submit">{metaUpdate ? "Update" : "Create"}</Button>
+              {metaUpdate && (
+                <Button variant="danger" onClick={handleDelete}>
+                  Delete
+                </Button>
+              )}
             </Modal.Footer>
           </Form>
         </Modal.Body>

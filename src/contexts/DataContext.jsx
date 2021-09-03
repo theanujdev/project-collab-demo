@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useRef } from "react";
 
 export const AppContext = createContext();
 
@@ -15,6 +15,7 @@ const DataContext = ({ children }) => {
 
   const [metaUpdate, setMetaUpdate] = useState();
   const [showCardModal, setShowCardModal] = useState(false);
+  const dragging = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("ToDo", JSON.stringify(ToDo));
@@ -39,6 +40,7 @@ const DataContext = ({ children }) => {
         setMetaUpdate,
         showCardModal,
         setShowCardModal,
+        dragging,
       }}
     >
       {children}
