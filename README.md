@@ -13,7 +13,7 @@ This project is a simple clone of project collab/management services like Jira, 
 - Multiple categories and columns
 - Ordered data
 - Validation of data
-- Persistant State
+- Persistent State
 - Add, Update or Delete cards
 - Drag and Drop cards
 - Simple and clean user interface
