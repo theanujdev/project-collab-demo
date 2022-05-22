@@ -54,11 +54,11 @@ yarn start
 
 ## Feedback
 
-If you have any feedback, please reach out at [@AnujS_IN](https://twitter.com/AnujS_IN)
+If you have any feedback, please reach out at [@theanujdev](https://twitter.com/theanujdev)
 
 ## Authors
 
-- [@ProdexOne](https://www.github.com/ProdexOne)
+- [@theanujdev](https://www.github.com/theanujdev)
 
 ## License
 
