@@ -23,7 +23,7 @@ This project is a simple clone of project collab/management services like Jira, 
 - Clone the project
 
 ```bash
-git clone https://github.com/ProdexOne/project-collab-demo.git
+git clone https://github.com/theanujdev/project-collab-demo.git
 ```
 
 - Go to the project directory
